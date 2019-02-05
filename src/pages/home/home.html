@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      GEEKALL
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding="center">
+<form [formGroup]="loginvalidate" novalidate>
+	<p class="registerA">Already a Customer?</p>
+
+  <ion-list>
+	<ion-item>
+		  <ion-input type="text" formControlName="user" placeholder="User Name"></ion-input>
+	</ion-item>
+	
+	<ion-item no-lines *ngIf="( loginvalidate.get('user').hasError('minlength') || loginvalidate.get('user').hasError('required') ) && loginvalidate.get('user').touched">
+		<div class="error" *ngIf="loginvalidate.get('user').hasError('required') && loginvalidate.get('user').touched">
+		Please enter valid User Name
+		</div>
+		<div class="error" *ngIf="loginvalidate.get('user').hasError('minlength') && loginvalidate.get('user').touched">
+		Minimum of 4 characters
+		</div>
+	</ion-item>
+	
+	<ion-item>
+		<ion-input type="password" formControlName="pswd" placeholder="Password" ></ion-input>
+	</ion-item>
+  
+	<ion-item no-lines *ngIf="( loginvalidate.get('user').hasError('minlength') || loginvalidate.get('user').hasError('required') ) && loginvalidate.get('user').touched">
+		<div class="error" *ngIf="loginvalidate.get('user').hasError('required') && loginvalidate.get('user').touched">
+			Please enter valid Password
+		</div>
+		<div class="error" *ngIf="loginvalidate.get('user').hasError('minlength') && loginvalidate.get('user').touched">
+			Minlength is 6 characters
+        </div>
+    </ion-item>
+	
+  </ion-list>
+ </form>
+
+ <button ion-button block class="login" (click)="login()">Login</button><br>
+ <p class="register">New Here?</p>
+
+ <button ion-button block (click)="register()" type="reset">Create Account</button>
+
+ </ion-content>
